@@ -11,4 +11,4 @@ const routerPlaceholder = (req, res) => {
 
 
 //temp
-module.exports = {routerPlaceholder}
+module.exports = {routerPlaceholder};
