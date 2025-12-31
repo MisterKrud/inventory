@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+</head>
+<body>
+    <form action="/addNewShoe" method="POST">
+        <h4>Add Shoe</h4>
+        <label for="brand">Brand</label>
+        <input type="text" name="brand", id="brand">
+        <label for="model">Model</label>
+        <input type="text" name="model" id="model">
+        <label for="style">Shoe style</label>
+        <input type="text" name="style" id="style">
+        <label for="price">Price</label>
+        <input type="number" name="price" id="price" placeholder="0.00">
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <form action="/addNewBrand" method="POST">
+        <h4>Add new brand</h4>
+        <label for="newBrand">Brand name</label>
+        <input type="text" name="newBrand" id="newBrand">
+    </form>
+    <hr>
+    <form action="/addNewStyle" method="POST">
+        <h4>Add new shoe style</h4>
+        <label for="newStyle">Brand name</label>
+        <input type="text" name="newStyle" id="newStyle">
+    </form>
+</body>
+</html>

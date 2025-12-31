@@ -3,9 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %>></title>
+    <title>Shoes info</title>
 </head>
 <body>
-    <h3><%= title %></h3>
+    <div>
+    <h3><%= shoeTitle %></h3>
+   
+        <% shoes.forEach(shoe => { %>
+             <ul>
+       <li><%= shoe.model %></li>
+       <li><%= shoe.price %></li>
+        
+   </ul>
+<%  }); %>
+    </div>
+    <hr>
+     <div>
+    <h3><%= brandTitle %></h3>
+   
+        <% brands.forEach(brand => { %>
+             <ul>
+       <li><%= brand.name %></li>
+   </ul>
+<%  }); %>
+    </div>
+    <hr>
+    <h3><%= styleTitle %></h3>
+   
+        <% styles.forEach(style => { %>
+             <ul>
+       <li><%= style.style %></li>
+   </ul>
+<%  }); %>
+    </div>
+    <hr>
+    
+    
+    <a href="/new">Add new</a>
 </body>
 </html>

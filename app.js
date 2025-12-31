@@ -5,7 +5,7 @@ const app = express();
 const path = require("node:path");
 const assetsPath = path.join(__dirname, "public");
 const router = require("./router");
-app.set("views", path.join(path.dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.static(assetsPath));
