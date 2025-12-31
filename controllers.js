@@ -34,8 +34,28 @@ const addNewBrand = async (req, res) => {
 
 const addNewStyle = async (req, res) => {
     const {style} = req.body
-    await db.addStyle(styleName)
+    await db.addNewStyle(style)
     res.redirect("/")
+}
+
+const searchByBrand = async(req, res)=> {
+    const brandFilter = req.query.brandFilter
+    console.log(req.query)
+   const brand =  await db.searchByBrand(brandFilter)
+    res.render("brandSearchResults", {
+        brandTitle: "Brand Search Results",
+        brand: brand
+    })
+}
+
+const searchByStyle = async (req, res) => {
+    const styleFilter = req.query.styleFilter
+    const style = await db.searchByStyle(styleFilter)
+    console.log(style)
+    res.render("styleSearchResults", {
+        styleTitle: "Style search results",
+        style: style
+    })
 }
 
 //temp
@@ -43,5 +63,7 @@ module.exports = {
     routerPlaceholder,
     addShoeToShoesTable,
     addNewBrand,
-    addNewStyle
+    addNewStyle,
+    searchByBrand,
+    searchByStyle
 };

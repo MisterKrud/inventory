@@ -1,5 +1,7 @@
 const pool = require("./pool");
 
+//View enitre tables
+
 async function getBrandsTable() {
     const { rows } = await pool.query("SELECT * from brands")
     return rows;
@@ -20,6 +22,8 @@ async function getShoeVariantsTable() {
     return rows;
 }
 
+//Add entires
+
 async function addShoeToShoesTable( brand, model, style, price) {
    await pool.query("INSERT INTO shoes (brand_id, model, type_id, price) VALUES((SELECT id from BRANDS where name = $1),$2,(SELECT id FROM shoe_types WHERE style = $3),$4)", [brand, model, style, price])
 }
@@ -33,6 +37,18 @@ async function addNewStyle(styleName){
 }
 
 
+//Search
+
+async function searchByBrand(brand) {
+  const { rows } =  await pool.query("SELECT brands.name as brand, shoes.model, shoes.price  FROM shoes JOIN brands ON (shoes.brand_id = brands.id) WHERE brands.name = $1", [brand])
+  return rows;
+}
+
+async function searchByStyle(style) {
+    const { rows } = await pool.query("SELECT shoe_types.style, shoes.model, shoes.price  FROM shoes JOIN shoe_types ON (shoes.type_id = shoe_types.id) WHERE shoe_types.style = $1", [style])
+    return rows;
+}
+
 
 module.exports = {
     getBrandsTable,
@@ -42,5 +58,7 @@ module.exports = {
     getShoeVariantsTable,
     addShoeToShoesTable,
     addNewBrand, 
-    addNewStyle
+    addNewStyle,
+    searchByBrand,
+    searchByStyle
 }
