@@ -42,9 +42,10 @@ const searchByBrand = async(req, res)=> {
     const brandFilter = req.query.brandFilter
     console.log(req.query)
    const brand =  await db.searchByBrand(brandFilter)
-    res.render("brandSearchResults", {
+    res.render("searchResults", {
         brandTitle: "Brand Search Results",
-        brand: brand
+        brand: brand,
+        style: null
     })
 }
 
@@ -52,9 +53,10 @@ const searchByStyle = async (req, res) => {
     const styleFilter = req.query.styleFilter
     const style = await db.searchByStyle(styleFilter)
     console.log(style)
-    res.render("styleSearchResults", {
+    res.render("searchResults", {
         styleTitle: "Style search results",
-        style: style
+        style: style,
+        brand: null
     })
 }
 

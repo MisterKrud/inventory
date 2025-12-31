@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
+    <title>Document</title>
 </head>
 <body>
-
-    <%- include("./partials/searchByBrand") %>
-    <%- include("./partials/searchByStyle") %>
+    <%- include("partials/brandSearchResults", {brand}) %>
+    <%- include("partials/styleSearchResults", {style}) %>
     <hr>
     <%- include("partials/nav") %>
 </body>
