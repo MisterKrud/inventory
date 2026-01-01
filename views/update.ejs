@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Update shoe</h4>
+    <form action="/<%=shoe.id%>/updateShoe" method="POST">
+        <label for="updateBrand">Brand:</label>
+        <input type="text" name="updateBrand" id="updateBrand" value="<%=shoe.name%>" required>
+        <label for="updateModel">Model:</label>
+        <input type="text" name="updateModel" id="updateModel" value="<%=shoe.model%>" required>
+        <label for="updateType">Style</label>
+        <input type="text" name="updateType" id="updateType" value="<%=shoe.style%>" required>
+        <label for="updatePrice">Price:</label>
+        <input type="number" name="updatePrice" id="updatePrice" value="<%=shoe.price%>" required>
+        <input name ="updateId" id = "updateId" value="<%=shoe.id%>" style="height: 0; width: 0; border: none;">
+        <button type="submit">Update shoe</button>
+    </form>
+</body>
+</html>

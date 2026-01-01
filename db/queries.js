@@ -36,6 +36,18 @@ async function addNewStyle(styleName){
     await pool.query("INSERT INTO shoe_types (style) VALUES($1)", [styleName])
 }
 
+//Update
+async function getShoeToUpdate(id){
+    const {rows} = await pool.query("SELECT shoes.id, brands.name as brand, shoes.model, shoe_types.style, shoes.price FROM shoes JOIN shoe_types ON (shoes.type_id = shoe_types.id) JOIN brands ON (shoes.brand_id = brands.id) WHERE shoes.id = $1", [id])
+    console.log('The get query is executing')
+    console.log(`shoe is:`)
+   
+    return rows[0]
+}
+
+async function updateShoe(brand_id, model, type_id, price, id){
+    await pool.query("UPDATE shoes SET brand_id = brands.id, model = $2, type_id = shoe_types.id, price = $4 FROM brands, shoe_types WHERE shoes.id = $5 AND brands.name = $1 AND shoe_types.style = $3;", [brand_id, model, type_id, price, id])
+}
 
 //Search
 
@@ -60,5 +72,8 @@ module.exports = {
     addNewBrand, 
     addNewStyle,
     searchByBrand,
-    searchByStyle
+    searchByStyle,
+    getShoeToUpdate,
+    updateShoe
 }
+

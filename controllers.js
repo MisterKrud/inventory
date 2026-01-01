@@ -60,6 +60,24 @@ const searchByStyle = async (req, res) => {
     })
 }
 
+const updateShoeGet = async(req, res) => {
+    const shoeId = Number(req.params.id)
+    console.log(shoeId)
+    const shoe = await db.getShoeToUpdate(shoeId)
+    console.log(shoe)
+    res.render("update", {
+        shoe: shoe
+    })
+}
+
+const updateShoePost = async (req, res) => {
+    const shoe = req.body
+    console.log(shoe)
+    console.log(shoe.id)
+    await db.updateShoe(shoe.updateBrand, shoe.updateModel, shoe.updateType, shoe.updatePrice, shoe.updateId)
+    res.redirect("/")
+}
+
 //temp
 module.exports = {
     routerPlaceholder,
@@ -67,5 +85,7 @@ module.exports = {
     addNewBrand,
     addNewStyle,
     searchByBrand,
-    searchByStyle
+    searchByStyle,
+    updateShoeGet,
+    updateShoePost
 };
