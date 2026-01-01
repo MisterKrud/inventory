@@ -58,7 +58,7 @@ const addShoeToShoesTable = [
     const errors = validationResult(req);
     console.log(validationResult(req))
     if(!errors.isEmpty()){
-      return res.status(400).render("newShoe", {
+      return res.status(400).render("admin", {
         title: "New Message",
         errors: errors.array(),
       })

@@ -57,3 +57,31 @@ input{
 input:hover, input:active{
   background-color: #edf5f7;
 }
+
+.styles-brands-admin{
+  display: flex;
+  /* justify-content: space-around; */
+}
+
+.brand-style-block{
+  display: flex;
+  flex-direction:column;
+  border: gray 1px solid;
+  margin: 0 auto;
+align-items: center;
+}
+
+.brand-style-block>.add-form{
+  justify-self: flex-end;
+}
+
+
+
+a{
+  padding: 1rem;
+  margin: 1rem;
+}
+
+nav{
+  margin: 1rem;
+}
