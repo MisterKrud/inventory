@@ -78,6 +78,10 @@ async function deleteBrand(id){
     await pool.query("DELETE FROM brands WHERE brands.id = $1", [id])
 }
 
+async function deleteAllShoesInBrand(brand_id) {
+    await pool.query("DELETE FROM shoes WHERE brand_id = $1", [brand_id])
+}
+
 async function deleteStyle(id){
     await pool.query("DELETE FROM shoe_types WHERE shoe_types.id = $1", [id])
 }
@@ -99,6 +103,7 @@ module.exports = {
     updateShoe,
     deleteShoe,
     deleteBrand,
+    deleteAllShoesInBrand,
     deleteStyle
 }
 

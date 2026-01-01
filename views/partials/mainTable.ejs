@@ -1,0 +1,28 @@
+ <div>
+    <h3><%= title %></h3>
+   
+      
+             <table>
+                <tr>
+                    <th>Brand</th>
+                    
+                    <th>Model</th>
+                    <th>Style</th>
+                    <th>Price</th>
+                    
+                </tr>
+                  <% shoes.forEach(shoe => { %>
+                    <tr>
+        <td><%= shoe.name %></td>
+       <td><%= shoe.model %></td>
+       <td><%= shoe.style %></td>
+       <td>$<%= shoe.price %></td>
+      
+        </tr>
+  
+<%  }); %>
+ </table>
+ <br>
+
+<br>
+    </div>

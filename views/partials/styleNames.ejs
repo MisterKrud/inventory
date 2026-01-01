@@ -1,0 +1,16 @@
+<div>
+    <h3><%= styleTitle %></h3>
+   <table>
+        <% styles.forEach(style => { %>
+             <tr>
+       <td><%= style.style %></td>
+       <td><form action="/<%=style.id%>/deleteStyle" method="POST">
+        <button type="submit" onclick="return confirm('Delete style?')">Delete</button>
+       </form></td>
+   </tr>
+<%  }); %>
+</table>
+<br>
+<%- include("newStyle") %>
+<br>
+    </div>

@@ -1,0 +1,17 @@
+ <div>
+    <%- include("errors") %>
+    <h3><%= brandTitle %></h3>
+   <table>
+        <% brands.forEach(brand => { %>
+            <tr>
+       <td><%= brand.name %></td>
+       <td><form action="/<%=brand.id%>/deleteBrand" method="POST">
+        <button type="submit" onclick="return confirm('Delete brand?')">Delete</button>
+       </form></td>
+   </tr>
+<%  }); %>
+</table>
+<br>
+<%- include("newBrand") %>
+<br>
+    </div>

@@ -3,13 +3,24 @@ const {body, validationResult, matchedData } = require("express-validator");
 
 
 //Render all info on page
+
+const homepage = async (req, res) => {
+    const shoes = await db.getShoesInformationTable();
+    res.render("index", {
+       title: "Shoes",
+        shoes: shoes,
+    })
+
+}
+
+
 const routerPlaceholder = async (req, res) => {
     const shoes = await db.getShoesInformationTable();
     const styles = await db.getTypesTable();
     const brands = await db.getBrandsTable();
     console.log(shoes)
  
-    res.render("index", {
+    res.render("admin", {
         shoeTitle: "Shoes",
         shoes: shoes,
         styleTitle: "Styles",
@@ -20,29 +31,76 @@ const routerPlaceholder = async (req, res) => {
     })
 }
 
+//validators
+const newShoeValidator = [
+    body("brand").trim()
+    .isAlpha().withMessage('Brand names must contain alpha-numeric characters only')
+    .isLength({min: 1, max: 15}).withMessage('Brand names can be no longer than 15 charcters'),
+    body("model").trim()
+    .isLength({min: 1, max: 15}).withMessage('Shoe model names must be 15 characters or fewer'),
+    body("s")
+]
 
+const brandNameValidator = [
+    body("newBrand").trim()
+    .isAlpha().withMessage('Brand names must contain alpha-numeric characters only')
+    .isLength({min: 1, max: 15}).withMessage('Brand names can be no longer than 15 charcters')
+]
+
+const styleNameValidator = [
+    body("newStyle").trim()
+    .isLength({min: 1, max: 20}).withMessage('Style names must be 20 characters or under')
+]
   
 //Add new
-const addShoeToShoesTable = async(req, res) => {
-    const { brand, model, style, price} = req.body
+const addShoeToShoesTable = [ 
+    newShoeValidator, async(req, res) => {
+    const errors = validationResult(req);
+    console.log(validationResult(req))
+    if(!errors.isEmpty()){
+      return res.status(400).render("newShoe", {
+        title: "New Message",
+        errors: errors.array(),
+      })
+    }    
+    const { brand, model, style, price} = matchedData(req)
     await db.addShoeToShoesTable(brand, model, style, price) 
     res.redirect("/")
 }
-
-const addNewBrand = async (req, res) => {
-    const brandName = req.body.newBrand
-    console.log(brandName)
+]
+const addNewBrand = [
+    brandNameValidator, async (req, res) => {
+    const errors = validationResult(req);
+    console.log(validationResult(req))
+    if(!errors.isEmpty()){
+      return res.status(400).render("partials/errors", {
+        title: "New Message",
+        errors: errors.array(),
+      })
+    }    
+    const data = matchedData(req)
+    const brandName = data.newBrand
     await db.addNewBrand(brandName)
     res.redirect("/")
 }
+]
 
-const addNewStyle = async (req, res) => {
-    const style = req.body.newStyle
-    
-    console.log(style)
+const addNewStyle = [
+    styleNameValidator, async (req, res) => {
+    const errors = validationResult(req);
+    console.log(validationResult(req))
+    if(!errors.isEmpty()){
+      return res.status(400).render("newStyle", {
+        title: "New Message",
+        errors: errors.array(),
+      })
+    }    
+    const data = matchedData(req)
+    const style = data.newStyle
     await db.addNewStyle(style)
     res.redirect("/")
 }
+]
 
 //Search
 const searchByBrand = async(req, res)=> {
@@ -97,6 +155,7 @@ const deleteShoe = async (req, res) => {
 
 const deleteBrand = async(req, res) =>{
     await db.deleteBrand(req.params.id)
+    await db.deleteAllShoesInBrand(req.params.id)
     res.redirect("/");
 }
 
@@ -107,6 +166,7 @@ const deleteStyle = async(req, res) => {
 
 module.exports = {
     routerPlaceholder,
+    homepage,
     addShoeToShoesTable,
     addNewBrand,
     addNewStyle,

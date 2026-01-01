@@ -4,7 +4,8 @@ const controllers = require("./controllers")
 
 
 //temp
-router.get("/", controllers.routerPlaceholder)
+router.get("/", controllers.homepage)
+router.get("/admin", controllers.routerPlaceholder)
 router.get("/new", (req, res) => {
     res.render("new")
 })

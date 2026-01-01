@@ -1,0 +1,31 @@
+ <div>
+    <h3><%= shoeTitle %></h3>
+   
+      
+             <table>
+                <tr>
+                    <th>Brand</th>
+                    
+                    <th>Model</th>
+                    <th>Style</th>
+                    <th>Price</th>
+                    
+                </tr>
+                  <% shoes.forEach(shoe => { %>
+                    <tr>
+        <td><%= shoe.name %></td>
+       <td><%= shoe.model %></td>
+       <td><%= shoe.style %></td>
+       <td>$<%= shoe.price %></td>
+       <td><a href="/<%=shoe.id%>/update/">Update</a></td>
+       <td><form action="/<%=shoe.id%>/deleteShoe/", method="POST">
+        <button type="submit" onclick="return confirm('Really delete this shoe?')">Delete</button>
+       </form></td>
+        </tr>
+  
+<%  }); %>
+ </table>
+ <br>
+<%-include("newShoe") %>
+<br>
+    </div>
