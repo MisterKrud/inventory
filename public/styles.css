@@ -66,12 +66,12 @@ input:hover, input:active{
 .brand-style-block{
   display: flex;
   flex-direction:column;
-  border: gray 1px solid;
+ 
   margin: 0 auto;
 align-items: center;
 }
 
-.brand-style-block>.add-form{
+.add-form{
   justify-self: flex-end;
 }
 
