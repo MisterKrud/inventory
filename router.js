@@ -28,4 +28,12 @@ router.post("/:id/updateShoe", controllers.updateShoePost)
 //search
 router.get("/brandSearchResults", controllers.searchByBrand)
 router.get("/styleSearchResults", controllers.searchByStyle)
+
+
+//delete
+router.post("/:id/deleteShoe", controllers.deleteShoe)
+router.post("/:id/deleteBrand", controllers.deleteBrand)
+router.post("/:id/deleteStyle", controllers.deleteStyle)
+
+
 module.exports = router;

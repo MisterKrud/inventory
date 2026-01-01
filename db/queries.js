@@ -17,6 +17,13 @@ async function getTypesTable() {
     return rows;
 }
 
+async function getShoesInformationTable() {
+    const {rows } = await pool.query(
+        "SELECT shoes.id, brands.name, shoes.model, shoe_types.style, shoes.price FROM shoes JOIN brands ON (brands.id = shoes.brand_id) JOIN shoe_types on (shoe_types.id = shoes.type_id)"
+    )
+    return rows;
+}
+
 async function getShoeVariantsTable() {
     const { rows } = await pool.query("SELECT * from shoe_variants")
     return rows;
@@ -61,8 +68,23 @@ async function searchByStyle(style) {
     return rows;
 }
 
+//Delete
+
+async function deleteShoe(id){
+   await pool.query("DELETE from shoes WHERE shoes.id = $1", [id]) 
+}
+
+async function deleteBrand(id){
+    await pool.query("DELETE FROM brands WHERE brands.id = $1", [id])
+}
+
+async function deleteStyle(id){
+    await pool.query("DELETE FROM shoe_types WHERE shoe_types.id = $1", [id])
+}
+
 
 module.exports = {
+    getShoesInformationTable,
     getBrandsTable,
     getShoeVariantsTable,
     getShoesTable,
@@ -74,6 +96,9 @@ module.exports = {
     searchByBrand,
     searchByStyle,
     getShoeToUpdate,
-    updateShoe
+    updateShoe,
+    deleteShoe,
+    deleteBrand,
+    deleteStyle
 }
 

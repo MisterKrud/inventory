@@ -16,6 +16,7 @@
                     <th>id</th>
                     
                     <th>Model</th>
+                    <th>Style</th>
                     <th>Price</th>
                     
                 </tr>
@@ -23,8 +24,12 @@
                     <tr>
         <td><%= shoe.id %></td>
        <td><%= shoe.model %></td>
+       <td><%= shoe.style %></td>
        <td>$<%= shoe.price %></td>
        <td><a href="/<%=shoe.id%>/update/">Update</a></td>
+       <td><form action="/<%=shoe.id%>/deleteShoe/", method="POST">
+        <button type="submit" onclick="return confirm('Really delete this shoe?')">Delete shoe!</button>
+       </form></td>
         </tr>
   
 <%  }); %>
@@ -33,21 +38,29 @@
     <hr>
      <div>
     <h3><%= brandTitle %></h3>
-   
+   <table>
         <% brands.forEach(brand => { %>
-             <ul>
-       <li><%= brand.name %></li>
-   </ul>
+            <tr>
+       <td><%= brand.name %></td>
+       <td><form action="/<%=brand.id%>/deleteBrand" method="POST">
+        <button type="submit" onclick="return confirm('Delete brand?')">Delete brand</button>
+       </form></td>
+   </tr>
 <%  }); %>
+</table>
     </div>
     <hr>
     <h3><%= styleTitle %></h3>
-   
+   <table>
         <% styles.forEach(style => { %>
-             <ul>
-       <li><%= style.style %></li>
-   </ul>
+             <tr>
+       <td><%= style.style %></td>
+       <td><form action="/<%=style.id%>/deleteStyle" method="POST">
+        <button type="submit" onclick="return confirm('Delete style?')">Delete Style</button>
+       </form></td>
+   </tr>
 <%  }); %>
+</table>
     </div>
     <hr>
     

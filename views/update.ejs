@@ -9,7 +9,7 @@
     <h4>Update shoe</h4>
     <form action="/<%=shoe.id%>/updateShoe" method="POST">
         <label for="updateBrand">Brand:</label>
-        <input type="text" name="updateBrand" id="updateBrand" value="<%=shoe.name%>" required>
+        <input type="text" name="updateBrand" id="updateBrand" value="<%=shoe.brand%>" required>
         <label for="updateModel">Model:</label>
         <input type="text" name="updateModel" id="updateModel" value="<%=shoe.model%>" required>
         <label for="updateType">Style</label>
@@ -19,5 +19,6 @@
         <input name ="updateId" id = "updateId" value="<%=shoe.id%>" style="height: 0; width: 0; border: none;">
         <button type="submit">Update shoe</button>
     </form>
+    <%- include("partials/nav") %>
 </body>
 </html>

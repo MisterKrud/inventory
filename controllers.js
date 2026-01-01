@@ -2,11 +2,12 @@ const db = require("./db/queries")
 const {body, validationResult, matchedData } = require("express-validator");
 
 
-//temp
+//Render all info on page
 const routerPlaceholder = async (req, res) => {
-    const shoes = await db.getShoesTable();
+    const shoes = await db.getShoesInformationTable();
     const styles = await db.getTypesTable();
     const brands = await db.getBrandsTable();
+    console.log(shoes)
  
     res.render("index", {
         shoeTitle: "Shoes",
@@ -18,8 +19,10 @@ const routerPlaceholder = async (req, res) => {
 
     })
 }
-  
 
+
+  
+//Add new
 const addShoeToShoesTable = async(req, res) => {
     const { brand, model, style, price} = req.body
     await db.addShoeToShoesTable(brand, model, style, price) 
@@ -27,17 +30,21 @@ const addShoeToShoesTable = async(req, res) => {
 }
 
 const addNewBrand = async (req, res) => {
-    const {brandName} = req.body
+    const brandName = req.body.newBrand
+    console.log(brandName)
     await db.addNewBrand(brandName)
     res.redirect("/")
 }
 
 const addNewStyle = async (req, res) => {
-    const {style} = req.body
+    const style = req.body.newStyle
+    
+    console.log(style)
     await db.addNewStyle(style)
     res.redirect("/")
 }
 
+//Search
 const searchByBrand = async(req, res)=> {
     const brandFilter = req.query.brandFilter
     console.log(req.query)
@@ -60,6 +67,7 @@ const searchByStyle = async (req, res) => {
     })
 }
 
+//Update
 const updateShoeGet = async(req, res) => {
     const shoeId = Number(req.params.id)
     console.log(shoeId)
@@ -78,7 +86,25 @@ const updateShoePost = async (req, res) => {
     res.redirect("/")
 }
 
-//temp
+//Delete
+
+const deleteShoe = async (req, res) => {
+    const shoeId = req.params.id
+    console.log(shoeId, typeof(shoeId))
+    await db.deleteShoe(shoeId)
+    res.redirect("/");
+}
+
+const deleteBrand = async(req, res) =>{
+    await db.deleteBrand(req.params.id)
+    res.redirect("/");
+}
+
+const deleteStyle = async(req, res) => {
+    await db.deleteStyle(req.params.id)
+    res.redirect("/");
+}
+
 module.exports = {
     routerPlaceholder,
     addShoeToShoesTable,
@@ -87,5 +113,8 @@ module.exports = {
     searchByBrand,
     searchByStyle,
     updateShoeGet,
-    updateShoePost
+    updateShoePost, 
+    deleteShoe,
+    deleteBrand,
+    deleteStyle
 };
