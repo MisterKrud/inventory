@@ -15,7 +15,7 @@
         <label for="updateType">Style</label>
         <input type="text" name="updateType" id="updateType" value="<%=shoe.style%>" required>
         <label for="updatePrice">Price:</label>
-        <input type="number" name="updatePrice" id="updatePrice" value="<%=shoe.price%>" required>
+        <input type="number" name="updatePrice" id="updatePrice" value="<%=shoe.price%>" step="0.01" required>
         <input name ="updateId" id = "updateId" value="<%=shoe.id%>" style="height: 0; width: 0; border: none;">
         <button type="submit">Update shoe</button>
     </form>

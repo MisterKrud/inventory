@@ -141,7 +141,7 @@ const updateShoePost = async (req, res) => {
     console.log(shoe)
     console.log(shoe.id)
     await db.updateShoe(shoe.updateBrand, shoe.updateModel, shoe.updateType, shoe.updatePrice, shoe.updateId)
-    res.redirect("admin")
+    res.redirect("/admin")
 }
 
 //Delete
