@@ -34,10 +34,12 @@ const routerPlaceholder = async (req, res) => {
 //validators
 const newShoeValidator = [
     body("brand").trim()
-   
     .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters'),
     body("style").trim()
-    .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters')
+    .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters'),
+    body("model").trim(),
+    body("price").trim()
+    
 ]
 
 const brandNameValidator = [
@@ -63,7 +65,7 @@ const addShoeToShoesTable = [
     }    
     const { brand, model, style, price} = matchedData(req)
     await db.addShoeToShoesTable(brand, model, style, price) 
-    res.redirect("/")
+    res.redirect("admin")
 }
 ]
 const addNewBrand = [
@@ -146,9 +148,8 @@ const updateShoePost = async (req, res) => {
 
 const deleteShoe = async (req, res) => {
     const shoeId = req.params.id
-    console.log(shoeId, typeof(shoeId))
     await db.deleteShoe(shoeId)
-    res.redirect("admin");
+    res.redirect("/");
 }
 
 const deleteBrand = async(req, res) =>{
