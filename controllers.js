@@ -65,7 +65,7 @@ const addShoeToShoesTable = [
     }    
     const { brand, model, style, price} = matchedData(req)
     await db.addShoeToShoesTable(brand, model, style, price) 
-    res.redirect("/")
+    res.redirect("admin")
 }
 ]
 const addNewBrand = [
@@ -81,7 +81,7 @@ const addNewBrand = [
     const data = matchedData(req)
     const brandName = data.newBrand
     await db.addNewBrand(brandName)
-    res.redirect("/")
+    res.redirect("admin")
 }
 ]
 
@@ -98,7 +98,7 @@ const addNewStyle = [
     const data = matchedData(req)
     const style = data.newStyle
     await db.addNewStyle(style)
-    res.redirect("/")
+    res.redirect("admin")
 }
 ]
 
@@ -141,7 +141,7 @@ const updateShoePost = async (req, res) => {
     console.log(shoe)
     console.log(shoe.id)
     await db.updateShoe(shoe.updateBrand, shoe.updateModel, shoe.updateType, shoe.updatePrice, shoe.updateId)
-    res.redirect("/")
+    res.redirect("admin")
 }
 
 //Delete
@@ -150,18 +150,18 @@ const deleteShoe = async (req, res) => {
     const shoeId = req.params.id
     console.log(shoeId, typeof(shoeId))
     await db.deleteShoe(shoeId)
-    res.redirect("/");
+    res.redirect("admin");
 }
 
 const deleteBrand = async(req, res) =>{
     await db.deleteBrand(req.params.id)
     await db.deleteAllShoesInBrand(req.params.id)
-    res.redirect("/");
+    res.redirect("admin");
 }
 
 const deleteStyle = async(req, res) => {
     await db.deleteStyle(req.params.id)
-    res.redirect("/");
+    res.redirect("admin");
 }
 
 module.exports = {
