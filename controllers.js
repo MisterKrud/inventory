@@ -63,7 +63,7 @@ const addShoeToShoesTable = [
     }    
     const { brand, model, style, price} = matchedData(req)
     await db.addShoeToShoesTable(brand, model, style, price) 
-    res.redirect("admin")
+    res.redirect("/")
 }
 ]
 const addNewBrand = [
@@ -139,7 +139,7 @@ const updateShoePost = async (req, res) => {
     console.log(shoe)
     console.log(shoe.id)
     await db.updateShoe(shoe.updateBrand, shoe.updateModel, shoe.updateType, shoe.updatePrice, shoe.updateId)
-    res.redirect("/")
+    res.redirect("admin")
 }
 
 //Delete
