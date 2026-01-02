@@ -11,7 +11,7 @@ const { Pool } = require("pg");
 // });
 
 //prod
-import postgres from 'postgres'
+
 
 const pool = new Pool({
   host: process.env.PROD_DB_HOST,
