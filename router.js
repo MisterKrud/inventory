@@ -4,7 +4,11 @@ const controllers = require("./controllers")
 
 
 //temp
-
+router.get("/", controllers.homepage)
+router.get("/admin", controllers.routerPlaceholder)
+router.get("/new", (req, res) => {
+    res.render("new")
+})
 
 router.get("/search", (req, res)=>{
     res.render("search")
@@ -32,9 +36,5 @@ router.post("/:id/deleteShoe", controllers.deleteShoe)
 router.post("/:id/deleteBrand", controllers.deleteBrand)
 router.post("/:id/deleteStyle", controllers.deleteStyle)
 
-router.get("/", controllers.homepage)
-router.get("/admin", controllers.routerPlaceholder)
-router.get("/new", (req, res) => {
-    res.render("new")
-})
+
 module.exports = router;

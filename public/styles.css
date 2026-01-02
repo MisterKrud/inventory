@@ -85,3 +85,14 @@ a{
 nav{
   margin: 1rem;
 }
+
+body{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+hr{
+ height: .01rem;
+ width: 100%;
+}
