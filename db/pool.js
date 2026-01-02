@@ -14,13 +14,14 @@ const { Pool } = require("pg");
 
 
 const pool = new Pool({
-  host: process.env.PROD_DB_HOST,
-  database: process.env.PROD_DB_NAME,
-  username: process.env.PROD_DB_USER,
-  password: process.env.PROD_DB_PASSWORD,
+  connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false 
-  }
-})
+  },
+  connectionTimeoutMillis: 5000, 
+  idleTimeoutMillis: 30000
+  
+});
+console.log("Attempting to connect to:", process.env.DATABASE_URL ? "URL found" : "URL NOT FOUND");
 
 module.exports = pool;
