@@ -10,7 +10,7 @@ const { Pool } = require("pg");
 //   database: process.env.DEV_DB_NAME,
 // });
 
-prod
+//prod
 
 
 const pool = new Pool({
