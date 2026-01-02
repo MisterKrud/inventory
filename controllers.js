@@ -38,7 +38,8 @@ const newShoeValidator = [
     .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters'),
     body("model").trim()
     .isLength({min: 1, max: 30}).withMessage('Shoe model names must be 30 characters or fewer'),
-    body("s")
+    body("style").trim()
+    .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters')
 ]
 
 const brandNameValidator = [
