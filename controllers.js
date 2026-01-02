@@ -34,17 +34,16 @@ const routerPlaceholder = async (req, res) => {
 //validators
 const newShoeValidator = [
     body("brand").trim()
-    .isAlpha().withMessage('Brand names must contain alpha-numeric characters only')
-    .isLength({min: 1, max: 15}).withMessage('Brand names can be no longer than 15 charcters'),
+   
+    .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters'),
     body("model").trim()
-    .isLength({min: 1, max: 15}).withMessage('Shoe model names must be 15 characters or fewer'),
+    .isLength({min: 1, max: 30}).withMessage('Shoe model names must be 30 characters or fewer'),
     body("s")
 ]
 
 const brandNameValidator = [
     body("newBrand").trim()
-    .isAlpha().withMessage('Brand names must contain alpha-numeric characters only')
-    .isLength({min: 1, max: 15}).withMessage('Brand names can be no longer than 15 charcters')
+    .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters')
 ]
 
 const styleNameValidator = [
