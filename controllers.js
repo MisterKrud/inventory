@@ -36,8 +36,6 @@ const newShoeValidator = [
     body("brand").trim()
    
     .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters'),
-    body("model").trim()
-    .isLength({min: 1, max: 30}).withMessage('Shoe model names must be 30 characters or fewer'),
     body("style").trim()
     .isLength({min: 1, max: 20}).withMessage('Brand names can be no longer than 20 charcters')
 ]
@@ -141,7 +139,7 @@ const updateShoePost = async (req, res) => {
     console.log(shoe)
     console.log(shoe.id)
     await db.updateShoe(shoe.updateBrand, shoe.updateModel, shoe.updateType, shoe.updatePrice, shoe.updateId)
-    res.redirect("admin")
+    res.redirect("/")
 }
 
 //Delete
